@@ -1,38 +1,33 @@
-# Day 7 Lab Guide — Decision Trees and Random Forest
+# Day 7 Lab Guide — Actual Notebook Tasks
 
-## Part A — Decision Trees
-1. Run `day07_trees_random_forest.py`.
-2. Compare Gini and entropy criteria.
-3. Compare an unrestricted tree with trees limited to depths 3 and 5.
-4. Record training and test accuracy. Which model has the largest gap?
+## Task 1: Entropy and information gain
+- Compute entropy for the parent labels.
+- Calculate the weighted entropy of the left/right split.
+- Calculate information gain by subtracting weighted entropy from parent entropy.
+- Verify the result by hand and in code.
+- Notice that `Yes` and `YES` count as different labels in Python.
 
-## Part B — Bagging and Random Forest
-1. Explain how bootstrap samples are generated.
-2. Describe how Random Forest combines predictions from many trees.
-3. Explain how random feature selection helps decorrelate trees.
-4. Compare the forest and a single tree using the same split.
+## Task 2: Decision tree depth and overfitting
+- Train the Iris Decision Tree at max_depth 20 and 4.
+- Compare train accuracy with test accuracy.
+- Inspect both plots produced by `plot_tree`.
+- Explain how restricting depth affects complexity and potential overfitting.
 
-## Part C — Hyperparameter tuning
-The script uses five-fold GridSearchCV on training data:
-- Decision Tree: criterion, max_depth, min_samples_leaf.
-- Random Forest: n_estimators, max_depth, max_features, min_samples_leaf.
+## Task 3: Random Forest and feature importance
+- Inspect train/test accuracy and out-of-bag score for the 100-tree forest.
+- Compare Gini importance with permutation importance.
+- Compare the accuracy of the depth-4 Decision Tree and 2,000-tree Random Forest on the second split.
+- Note that feature importance is a model diagnostic, not proof of causation.
 
-Record the best parameters and cross-validation F1. Keep the held-out test set for final evaluation.
-
-## Part D — Feature importance
-Open `day07_feature_importance.png` after running the script. Identify the two highest-ranked features and explain why importance is predictive, not causal, evidence.
+## Run
+```bash
+python -m pip install numpy pandas matplotlib scikit-learn jupyter
+```
+Open `TASK1.ipynb`, `TASK2.ipynb`, and `TASK3.ipynb` in Jupyter/Colab.
 
 ## Submission checklist
-- [ ] Code runs successfully.
-- [ ] Model comparison table includes train and test accuracy.
-- [ ] Confusion matrices and classification reports reviewed.
-- [ ] Best cross-validation settings recorded.
-- [ ] Feature-importance plot saved.
-- [ ] Reflection questions answered in your learning log.
-
-## Reflection questions
-1. What are Gini impurity, entropy, and information gain?
-2. Why can a deep Decision Tree overfit?
-3. How does bagging reduce variance?
-4. How does Random Forest differ from plain bagging?
-5. What are limitations of impurity-based feature importance?
+- [ ] Entropy and information gain printed and explained.
+- [ ] Depth-20 and depth-4 trees visualized and compared.
+- [ ] Random Forest OOB score and test score recorded.
+- [ ] Gini and permutation importance compared.
+- [ ] Decision Tree and Random Forest accuracies compared.
